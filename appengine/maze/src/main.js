@@ -32,8 +32,10 @@ goog.require('Maze.html');
 
 BlocklyGames.storageName = 'maze';
 
+//const MAX_BLOCKS =
+//    [Infinity, Infinity, 2, 5, 5, 5, 5, 10, 7, 10][BlocklyGames.LEVEL - 1];
 const MAX_BLOCKS =
-    [Infinity, Infinity, 2, 5, 5, 5, 5, 10, 7, 10][BlocklyGames.LEVEL - 1];
+    [Infinity, Infinity, Infinity, Infinity, Infinity, Infinity, Infinity, Infinity, Infinity, Infinity][BlocklyGames.LEVEL - 1];
 
 // Crash type constants.
 const CRASH_STOP = 1;
