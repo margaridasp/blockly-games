@@ -20,10 +20,20 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+    
       - name: Checkout source
         uses: actions/checkout@v4
 
-      - name: Upload artifact from appengine folder
+      - name: Build the site
+        run: |
+          make deps
+          make games
+
+      - name: Upload appengine folder to GitHub Pages
         uses: actions/upload-pages-artifact@v3
         with:
           path: appengine
