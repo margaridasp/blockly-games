@@ -81,6 +81,8 @@ Maze.html.toolbox_ = function(level) {
 <block type="maze_turn"><field name="DIR">turnLeft</field></block>
 <block type="maze_turn"><field name="DIR">turnRight</field></block>
 `;
+
+  /*
   if (level > 2) {
     xml += '<block type="maze_forever"></block>\n';
     if (level === 6) {
@@ -91,7 +93,13 @@ Maze.html.toolbox_ = function(level) {
         xml += '<block type="maze_ifElse"></block>\n';
       }
     }
-  }
+  }*/
+
+  //Have all the blocks available in all levels
+  xml += '<block type="maze_forever"></block>\n';
+  xml += '<block type="maze_if"></block>\n';
+  xml += '<block type="maze_ifElse"></block>\n';
+
   return `<xml id="toolbox" xmlns="https://developers.google.com/blockly/xml">${xml}</xml>`;
 };
 
