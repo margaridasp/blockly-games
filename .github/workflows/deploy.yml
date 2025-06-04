@@ -35,9 +35,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Build the site
-        run: |
-          make deps
-          make games
+        run: make deps games
 
       - name: Upload appengine folder to GitHub Pages
         uses: actions/upload-pages-artifact@v3
