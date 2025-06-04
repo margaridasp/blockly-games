@@ -2,7 +2,7 @@
 # Definitions
 ##############################
 
-REQUIRED_BINS = svn wget java python
+REQUIRED_BINS = wget java python
 
 ##############################
 # Rules
@@ -59,15 +59,40 @@ deps:
 	mkdir -p appengine/third-party
 	wget -N https://unpkg.com/@babel/standalone@7.14.8/babel.min.js
 	mv babel.min.js appengine/third-party/
-	@# GitHub doesn't support git archive, so download files using svn.
-	svn export --force https://github.com/ajaxorg/ace-builds/trunk/src-min-noconflict/ appengine/third-party/ace
-	mkdir -p appengine/third-party/blockly
-	svn export --force https://github.com/NeilFraser/blockly-for-BG/trunk/ appengine/third-party/blockly
-	svn export --force https://github.com/CreateJS/SoundJS/trunk/lib/ appengine/third-party/SoundJS
+	
+	@# GitHub doesn't support git archive, so download files using git sparse-checkout.
+	
+	rm -rf appengine/third-party/ace
+	git clone --filter=blob:none --sparse https://github.com/ajaxorg/ace-builds.git temp-ace
+	cd temp-ace && git sparse-checkout set src-min-noconflict
+	mv temp-ace/src-min-noconflict appengine/third-party/ace
+	rm -rf temp-ace
+
+	rm -rf appengine/third-party/blockly
+	git clone --filter=blob:none https://github.com/NeilFraser/blockly-for-BG.git temp-blockly
+	cd temp-blockly && \
+	  git sparse-checkout init --no-cone && \
+	  git sparse-checkout set "*"
+	mv temp-blockly appengine/third-party/blockly
+	@# remove the .git folder to treat it like an imported library
+	rm -rf appengine/third-party/blockly/.git
+
+	rm -rf appengine/third-party/SoundJS
+	git clone --filter=blob:none --sparse https://github.com/CreateJS/SoundJS.git temp-soundjs
+	cd temp-soundjs && git sparse-checkout set lib
+	mv temp-soundjs/lib appengine/third-party/SoundJS
+	rm -rf temp-soundjs
+
 	cp third-party/base.js appengine/third-party/
 	cp -R third-party/soundfonts appengine/third-party/
 
-	svn export --force https://github.com/NeilFraser/JS-Interpreter/trunk/ appengine/third-party/JS-Interpreter
+	rm -rf appengine/third-party/JS-Interpreter
+	git clone --filter=blob:none --sparse https://github.com/NeilFraser/JS-Interpreter.git temp-interpreter
+	cd temp-interpreter && git sparse-checkout set .
+	mv temp-interpreter appengine/third-party/JS-Interpreter
+	rm -rf appengine/third-party/JS-Interpreter/.git
+	rm -rf temp-interpreter
+
 	@# Compile JS-Interpreter using SIMPLE_OPTIMIZATIONS because the Music game needs to mess with the stack.
 	java -jar build/third-party-downloads/closure-compiler.jar\
 	  --language_out ECMASCRIPT5\
