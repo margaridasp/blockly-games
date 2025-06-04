@@ -3,24 +3,39 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches:
-      - master
+    branches: [master]
+  workflow_dispatch:
 
 permissions:
+  contents: read
   pages: write
   id-token: write
 
+# this will deploy only the latest commit, if multiple workflow runs are triggered
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: Checkout source
         uses: actions/checkout@v4
 
-      - name: Upload site
-        uses: actions/upload-pages-artifact@v2
+      - name: Upload artifact from appengine folder
+        uses: actions/upload-pages-artifact@v3
         with:
-          path: ./appengine
+          path: appengine
 
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
       - name: Deploy to GitHub Pages
+        id: deployment
         uses: actions/deploy-pages@v4
+
