@@ -99,6 +99,7 @@ Maze.html.toolbox_ = function(level) {
   xml += '<block type="maze_forever"></block>\n';
   xml += '<block type="maze_if"></block>\n';
   xml += '<block type="maze_ifElse"></block>\n';
+  xml += '<block type="maze_repeat"></block>\n';
 
   return `<xml id="toolbox" xmlns="https://developers.google.com/blockly/xml">${xml}</xml>`;
 };

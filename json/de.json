@@ -92,6 +92,8 @@
 	"Maze.pathLeft": "wenn Pfad nach links ist",
 	"Maze.pathRight": "wenn Pfad nach rechts ist",
 	"Maze.repeatUntil": "wiederholen bis",
+	"Maze.repeat": "wiederholen",
+	"Maze.times": "Mal",
 	"Maze.moveForwardTooltip": "Bewegt den Spieler ein Feld vor.",
 	"Maze.turnTooltip": "Dreht den Spieler um 90 Grad nach links oder rechts.",
 	"Maze.ifTooltip": "Falls es einen Pfad in der angegebenen Richtung gibt, dann einige Aktionen ausführen.",

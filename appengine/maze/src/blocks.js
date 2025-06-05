@@ -17,6 +17,7 @@ goog.require('Blockly.JavaScript');
 goog.require('Blockly.Extensions');
 goog.require('Blockly.FieldDropdown');
 goog.require('Blockly.FieldImage');
+goog.require('Blockly.FieldNumber');
 goog.require('BlocklyGames');
 
 
@@ -151,7 +152,7 @@ Maze.Blocks.init = function() {
       "extensions": ["maze_turn_arrows"],
     },
 
-    // Block for repeat loop.
+    // Block for repeat until goal loop.
     {
       "type": "maze_forever",
       "message0": `${BlocklyGames.getMsg('Maze.repeatUntil', false)}%1%2${BlocklyGames.getMsg('Maze.doCode', false)}%3`,
@@ -173,6 +174,32 @@ Maze.Blocks.init = function() {
       "previousStatement": null,
       "colour": LOOPS_HUE,
       "tooltip": BlocklyGames.getMsg('Maze.whileTooltip', false),
+    },
+    // Block for repeat N times loop.
+    {
+      "type": "maze_repeat",
+      "message0": `${BlocklyGames.getMsg('Maze.repeat', false)} %1${BlocklyGames.getMsg('Maze.times', false)}%2${BlocklyGames.getMsg('Maze.doCode', false)}%3`,
+      "args0": [
+        {
+          "type": "field_number",
+          "name": "TIMES",
+          "value": "0",
+          "min": "0",
+          "max": "10",
+          "precision": "1"
+        },
+        {
+          "type": "input_dummy",
+        },
+        {
+          "type": "input_statement",
+          "name": "DO",
+        }
+      ],
+      "previousStatement": null,
+      "nextStatement": null,
+      "colour": LOOPS_HUE,
+      "tooltip": BlocklyGames.getMsg('Maze.forTooltip', false),
     },
   ]);
 };
@@ -211,4 +238,10 @@ Blockly.JavaScript['maze_forever'] = function(block) {
         `'block_id_${block.id}'`) + branch;
   }
   return `while (notDone()) {\n${branch}}\n`;
+};
+
+Blockly.JavaScript['maze_repeat'] = function(block) {
+  const times = Number(block.getFieldValue('TIMES'));
+  let branch = Blockly.JavaScript.statementToCode(block, 'DO');
+  return `${branch.repeat(times)}`;
 };

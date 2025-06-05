@@ -315,6 +315,14 @@
     "desc": "block text - Imperative or infinitive of a verb to repeat the following commands.  The phrase is followed by the symbol denoting the end of the maze.",
     "msg": "repeat until"
   },
+  "Maze.repeat": {
+    "desc": "block text - Imperative or infinitive of a verb to repeat the following commands.",
+    "msg": "repeat"
+  },
+  "Maze.times": {
+    "desc": "block text - Imperative or infinitive of a verb to repeat the following commands.",
+    "msg": "times"
+  },
   "Maze.moveForwardTooltip": {
     "desc": "tooltip - Moves the icon on the screen representing the player forward one square on the maze board.",
     "msg": "Moves the player forward one space."
@@ -334,6 +342,10 @@
   "Maze.whileTooltip": {
     "desc": "tooltip - Repeat the enclosed commands until the maze has been successfully completed (the end point reached).",
     "msg": "Repeat the enclosed actions until finish point is reached."
+  },
+  "Maze.forTooltip": {
+    "desc": "tooltip - Repeat the enclosed commands a number of times.",
+    "msg": "Repeat the enclosed actions a number of times."
   },
   "Maze.capacity0": {
     "desc": "warning - No more blocks may be added until some are removed.  Please include '%0' in the translated string.  It will be replaced with '0' and made bold.",

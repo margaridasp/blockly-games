@@ -1,6 +1,6 @@
 {
 	"@metadata": {
-		"lastupdated": "2022-09-06 03:50:28.039245",
+		"lastupdated": "2025-06-05 10:47:40.741797",
 		"locale": "en",
 		"messagedocumentation": "qqq"
 	},
@@ -83,11 +83,14 @@
 	"Maze.pathLeft": "if path to the left",
 	"Maze.pathRight": "if path to the right",
 	"Maze.repeatUntil": "repeat until",
+	"Maze.repeat": "repeat",
+	"Maze.times": "times",
 	"Maze.moveForwardTooltip": "Moves the player forward one space.",
 	"Maze.turnTooltip": "Turns the player left or right by 90 degrees.",
 	"Maze.ifTooltip": "If there is a path in the specified direction, then do some actions.",
 	"Maze.ifelseTooltip": "If there is a path in the specified direction, then do the first block of actions. Otherwise, do the second block of actions.",
 	"Maze.whileTooltip": "Repeat the enclosed actions until finish point is reached.",
+	"Maze.forTooltip": "Repeat the enclosed actions a number of times.",
 	"Maze.capacity0": "You have %0 blocks left.",
 	"Maze.capacity1": "You have %1 block left.",
 	"Maze.capacity2": "You have %2 blocks left.",
